@@ -86,7 +86,11 @@ impl Header {
 
     /// The length of the payload associated with the header
     pub fn payload_len(&self) -> usize {
-        self.length as usize - 8
+        if self.length >= 8 {
+            self.length as usize - 8
+        } else {
+            0
+        }
     }
 
     /// Get request id
